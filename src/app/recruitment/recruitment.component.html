@@ -1,0 +1,244 @@
+<div class="banner">
+  <div class="banner-content" data-aos="fade-up" data-aos-duration="2000">
+    <p>VỮNG BƯỚC CÙNG VNSKY</p>
+    <p>Chúng tôi luôn đồng hành trên con đường phát triển sự nghiệp của bạn</p>
+
+  </div>
+</div>
+
+<div id="top" class="container text-center mt-5 table">
+  <h3>DANH SÁCH TUYỂN DỤNG</h3>
+
+  <p-table [value]="Recruitment" [paginator]="true" [rows]="5">
+    <ng-template pTemplate="body" let-customer>
+      <tr>
+        <td style="width: 50%;">
+          <div>
+            <div class="">
+              <a routerLink="/tuyen-dung/{{ customer.id }}">
+                <h5>{{ customer.job_name }}</h5>
+              </a>
+            </div>
+            <div>
+              <ul class="d-flex gap-5">
+                <li>
+                  <i class="fa fa-briefcase" aria-hidden="true"></i>
+                  {{ customer.career }}
+                </li>
+                <li>
+                  <i class="fa fa-map-marker mx-1" aria-hidden="true"></i
+                  >{{ customer.address }}
+                </li>
+                <li>
+                  <i class="fa fa-calendar-o mx-1" aria-hidden="true"></i
+                  >{{ customer.end_date }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </td>
+
+        <td class="status text-white">
+          <span class="p-2">
+            {{ customer.status }}
+          </span>
+        </td>
+        <td>
+       
+            <a class="btn" routerLink="/tuyen-dung/{{ customer.id }}">ỨNG TUYỂN</a>
+         
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<div class="form-upload mt-5 p-5 text-center"  data-aos="fade-up" data-aos-duration="2000">
+  <div class="container">
+    <p>Bạn chưa tìm thấy công việc yêu thích?</p>
+    <p>Bạn gửi CV ngay bây giờ để nhận cơ hội phỏng vấn tương lai.</p>
+
+    <div class="container mt-5 mb-5">
+      <form novalidate #form="ngForm" (ngSubmit)="uploadDataWithFileURL(form)">
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                ngModel
+                name="name"
+                #name="ngModel"
+                placeholder="Họ tên (*)"
+                required
+                [class.is-valid]="name.valid && (name.dirty || name.touched)"
+                [class.is-invalid]="
+                  name.invalid && (name.dirty || name.touched)
+                "
+              />
+              <div
+                *ngIf="name?.touched && name?.invalid"
+                class="invalid-feedback"
+              >
+                Vui lòng nhập họ tên.
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-group">
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                ngModel
+                name="email"
+                #email="ngModel"
+                placeholder="Email (*)"
+                pattern="[^ @]*@[^ @]*"
+                required
+                [class.is-valid]="email.valid && (email.dirty || email.touched)"
+                [class.is-invalid]="
+                  email.invalid && (email.dirty || email.touched)
+                "
+              />
+
+              <div
+                *ngIf="email?.touched && email?.invalid"
+                class="invalid-feedback"
+              >
+                Email phải chứa ký tự @
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col">
+            <div class="input-group">
+              <input
+                type="number"
+                class="form-control"
+                id="phone"
+                ngModel
+                name="phone"
+                #phone="ngModel"
+                placeholder="Số điện thoại (*)"
+                aria-describedby="inputGroupPrepend"
+                required
+                [class.is-valid]="phone.valid && (phone.dirty || phone.touched)"
+                [class.is-invalid]="
+                  phone.invalid && (phone.dirty || phone.touched)
+                "
+              />
+              <div
+                *ngIf="phone?.touched && phone?.invalid"
+                class="invalid-feedback"
+              >
+                Vui lòng nhập số điện thoại.
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                id="location"
+                ngModel
+                name="location"
+                #location="ngModel"
+                placeholder="Khu vực ứng tuyển (*)"
+                required
+                [class.is-valid]="
+                  location.valid && (location.dirty || location.touched)
+                "
+                [class.is-invalid]="
+                  location.invalid && (location.dirty || location.touched)
+                "
+              />
+              <div
+                class="invalid-feedback"
+                *ngIf="location?.touched && location?.invalid"
+              >
+                Vui lòng nhập khu vực ứng tuyển.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mt-3">
+          <textarea
+            type="text"
+            class="form-control"
+            id="describe"
+            ngModel
+            name="describe"
+            #describe="ngModel"
+            required
+            rows="5"
+            placeholder="Mô tả bản thân/ vị trí quan tâm
+Đính kèm link portfolio (áp dụng với vị trí thiết kế - nếu có)"
+          ></textarea>
+        </div>
+
+        <div class="input-group d-flex flex-column mt-3">
+          <div class="file-upload">
+            <input
+              type="file"
+              class="form-control"
+              id="fileURL"
+              ngModel
+              name="fileURL"
+              #fileURL="ngModel"
+              placeholder="Khu vực ứng tuyển (*)"
+              (change)="onFileSelected($event)"
+              required
+              [class.is-valid]="
+                fileURL.valid && (fileURL.dirty || fileURL.touched)
+              "
+              [class.is-invalid]="
+                fileURL.invalid && (fileURL.dirty || fileURL.touched)
+              "
+              accept=".pdf,.doc,.docx,.xls,.jpg,.png"
+            />
+           
+          </div>
+          <span>
+            (Chúng tôi chấp nhận file .doc, docx, .xls, .jpg , .png dưới 2MB)
+          </span>
+        </div>
+
+        <div>
+          <button
+            class="btn btn-primary mt-4"
+            type="submit"
+            [disabled]="form.invalid"
+            *ngIf="!upload"
+          >
+            <span>ỨNG TUYỂN</span>
+          </button>
+        </div>
+
+        <div class="btn btn-primary mt-4" *ngIf="upload">
+          LOADING
+          <div
+            class="spinner-border text-white mx-2"
+            role="status"
+            style="width: 20px; height: 20px"
+          ></div>
+        </div>
+        <div class="success" *ngIf="success">
+          <span
+            ><i class="fa fa-check mx-2" aria-hidden="true"></i>Ứng tuyển thành
+            công!</span
+          >
+        </div>
+        <div class="fail" *ngIf="fail">
+          <span
+            ><i class="fa fa-times mx-2" aria-hidden="true"></i>Thất bại, Vui
+            lòng thử lại sau!</span
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

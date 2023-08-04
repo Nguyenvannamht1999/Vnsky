@@ -1,0 +1,33 @@
+<div class="container">
+<div class="btn btn-success mb-4">
+    <a routerLink="add-recruitment">+ Add new Recruitment</a>
+</div>
+
+<table class="table">
+    <thead>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Career</th>
+        <th scope="col">Address</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let recruitment of Recruitment;let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td>
+                <a routerLink="detail-recruitment/{{recruitment.id}}"> {{recruitment.job_name}}</a>
+               </td>
+            <td>{{recruitment.career}}</td>
+            <td>{{recruitment.address}}</td>
+            <td>{{recruitment.end_date}}</td>
+            <td>{{recruitment.status}}</td>              
+            <td>
+                <a routerLink="update-recruitment/{{recruitment.id}}" class="btn btn-primary">Edit</a>
+                <span (click)="removeStudent(recruitment)" class="btn btn-danger">Delete</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>

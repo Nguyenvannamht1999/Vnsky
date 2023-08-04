@@ -1,0 +1,75 @@
+<div class="container">
+<form [formGroup]="recruitmentForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="mb-2">
+        <label for="">Tên công việc</label>
+        <input type="text" formControlName="job_name" class="form-control"  required="">
+    </div>
+    <div class="mb-2">
+        <label for="">Công ty</label>
+        <input type="text" formControlName="company" class="form-control"  required="">
+    </div>
+    <div class="mb-2">
+        <label for="">Nghành nghề</label>
+        <input type="text" formControlName="career" class="form-control"  required="">
+    </div>
+    <div class="mb-2">
+        <label for="">Mức lương</label>
+        <input type="text" formControlName="salary" class="form-control"  required="">
+    </div>
+    <div class="mb-2">
+        <label for="">Địa chỉ</label>
+        <input type="text" formControlName="address" class="form-control"  required="">
+    </div>
+    <div class="mb-2">
+        <label for="">Thời hạn</label>
+        <input type="text" formControlName="end_date" class="form-control"  required="">
+    </div>
+    <div class="mb-2">
+        <label for="">Số lượng</label>
+        <input type="text" formControlName="quantity" class="form-control"  required="">
+    </div>
+    <div class="mb-2">
+        <label for="">Vị trí làm việc</label>
+        <input type="text" formControlName="work_position" class="form-control" required="">
+    </div>
+    <div class="mb-2">
+        <label for="">Địa điểm làm việc</label>
+        <input type="text" formControlName="location" class="form-control"  required="">
+    </div>
+    <div class="mb-2">
+        <label for="">Thời gian làm việc</label>
+        <input type="text" formControlName="work_time" class="form-control" required="">
+    </div>
+    <div class="mb-2">
+        <label for="">Mô tả công việc</label>
+        <textarea formControlName="job_description" class="form-control"  required=""></textarea>
+    </div>
+   
+    <div class="mb-2">
+        <label for="">Yêu cầu công việc</label>
+        <textarea formControlName="job_requirement" class="form-control"  required=""></textarea>
+    </div>
+    <!-- <div class="mb-2">
+        <label for="">Lợi ích</label>
+        <textarea formControlName="benefit" class="form-control"  required=""></textarea>
+    </div> -->
+    <div class="mb-2">
+        <label for="">Trạng thái</label>
+    
+        <select formControlName="status" class="form-control">
+            <option value="HOT">HOT</option>
+            <option value="NEW">NEW</option>
+        </select>
+    </div>
+   
+    <div class="mb-2">
+        <button type="submit" class="btn btn-primary" [disabled]="!recruitmentForm.valid">Thêm mới</button>
+        <!-- <button type="reset" class="btn btn-danger">Reset</button> -->
+        <div class="btn btn-danger">
+            <a routerLink="../" class="text-white text-decoration-none">Trở về</a>
+        </div>
+
+    
+    </div>
+    </form>
+</div>
